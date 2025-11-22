@@ -4,3 +4,5 @@
 .gitignore
 Dockerfile
 docker-compose.yml
+.env
+src/generated/prisma/
