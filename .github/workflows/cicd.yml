@@ -1,29 +1,23 @@
-name: PR WORKFLOW
+name: Connect to EC2 and create folder
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      - name: Add SSH key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
+          chmod 600 key.pem
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build code
-        run: npm run build
-
-      - name: Run Prisma migrations (dev/staging)
-        env:
-          DATABASE_URL: ${{ secrets.DEV_DATABASE_URL }}
-        run: npx prisma migrate deploy
+      - name: Create folder on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.EC2_HOST }} "mkdir -p gawa"
