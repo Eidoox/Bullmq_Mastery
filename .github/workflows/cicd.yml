@@ -21,6 +21,6 @@ jobs:
       - name: Create folder on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.EC2_HOST }}
-          " mkdir -p gawa
-          echo "gawaaaaaaaaaaa" > ss.txt "
+          " mkdir -p gawa && echo "gawaaaaaaaaaaa" > ss.txt "
+
 
