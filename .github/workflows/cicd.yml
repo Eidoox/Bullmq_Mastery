@@ -6,27 +6,23 @@ on:
       - main
       - add_book_model
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: welcome
-        run: echo  "welcome"
+        run: echo "welcome"
 
-  maiin:
-    if: github.ref == "ref/heads/main"
+  main_branch:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: run hello
         run: echo "hellllllllo frommm mainnnn"
 
-  add_book_model_brannch:
-    if: github.ref == "ref/heads/add_book_model"
+  add_book_model_branch:
+    if: github.ref == 'refs/heads/add_book_model'
     runs-on: ubuntu-latest
     steps:
       - name: run tekoteko
         run: echo "techchcaskjdklasjdlkas"
-
- 
-
