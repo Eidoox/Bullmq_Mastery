@@ -15,17 +15,18 @@ jobs:
         run: echo  "welcome"
 
   maiin:
-    if: github.ref == "ref/head/main"
+    if: github.ref == "ref/heads/main"
     runs-on: ubuntu-latest
     steps:
       - name: run hello
         run: echo "hellllllllo frommm mainnnn"
 
   add_book_model_brannch:
-    if: github.ref == "ref/head/add_book_model"
+    if: github.ref == "ref/heads/add_book_model"
     runs-on: ubuntu-latest
     steps:
       - name: run tekoteko
         run: echo "techchcaskjdklasjdlkas"
 
  
+
