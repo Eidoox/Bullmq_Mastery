@@ -4,23 +4,28 @@ on:
   push:
     branches:
       - main
+      - add_book_model
+
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: welcome
+        run: echo  "welcome"
 
-      - name: Add SSH key
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
-          chmod 600 key.pem
+  maiin:
+    if: github.ref == "ref/head/main"
+    runs-on: ubuntu-latest
+    steps:
+      - name: run hello
+        run: echo "hellllllllo frommm mainnnn"
 
-      - name: Create folder on EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@${{ secrets.EC2_HOST }}
-          " mkdir -p gawa && echo "gawaaaaaaaaaaa" > ss.txt "
+  add_book_model_brannch:
+    if: github.ref == "ref/head/add_book_model"
+    runs-on: ubuntu-latest
+    steps:
+      - name: run tekoteko
+        run: echo "techchcaskjdklasjdlkas"
 
-
+ 
